@@ -20,19 +20,7 @@ public class MainMenuManager_Clase : MonoBehaviour
     {
         if (InputManager.instance.SelectInput)
         {
-            if(EventSystem.current.currentSelectedGameObject == _playerStartPosition) //se selecciona el dado
-            {
-                Debug.Log("dado seleccionado"); //bucle for busca posiciones disponibles
-
-            }
-            else
-            {
-                EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false;
-
-                EventSystem.current.SetSelectedGameObject(_playerStartPosition);
-
-            }
-
+            Debug.Log("pulsado");
         }
     }
     
@@ -48,3 +36,4 @@ public class MainMenuManager_Clase : MonoBehaviour
 
     //}
 }
+
