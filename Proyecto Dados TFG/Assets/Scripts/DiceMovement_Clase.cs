@@ -1,11 +1,15 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class DiceMovement_Clase : MonoBehaviour
 {
     [SerializeField] GameObject _diceStartPosition;
-
+    [SerializeField] GameObject _firstRowSelection;
+    [SerializeField] GameObject[] _rows;
+    GameObject _selectedRow;
+  
 
     void Start()
     {
@@ -20,31 +24,59 @@ public class DiceMovement_Clase : MonoBehaviour
             {
                 EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false; //desactiva el boton del dado
 
-                EventSystem.current.SetSelectedGameObject(_diceStartPosition);
-                Debug.Log("dado seleccionado"); //bucle for busca posiciones disponibles
-
+                EventSystem.current.SetSelectedGameObject(_firstRowSelection);
+                return;
             }
-            if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable) //se selecciona una casilla vacia
+            if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable) //selecciona una fila valida
             {
-                Transform currentParent = EventSystem.current.currentSelectedGameObject.transform.parent;
-                for (int i = 0; i < currentParent.childCount; i++) //revisa las casillas de la fila
+                //Switch segun el nombre del boton (flecha9 que selecciona la fila
+                switch (EventSystem.current.currentSelectedGameObject.GetComponent<Button>().transform.name)
                 {
-                    if (!currentParent.GetChild(i).GetComponent<Button>().interactable) //si la casilla no es interactuable
-                    {
-                        currentParent.GetChild(i).GetComponent<Button>().interactable = true;
-                        EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false;
-                        EventSystem.current.SetSelectedGameObject(_diceStartPosition);
-                    }
-                    else
-                    {
-                        return;
-                    }
+                    case ("Flecha 1"):
+                        _selectedRow = _rows[0];
+                        FindValidPosition();
 
+                        break;
+
+                    case ("Flecha 2"):
+                        _selectedRow = _rows[1];
+                        FindValidPosition();
+
+                        break;
+
+                    case ("Flecha 3"):
+                        _selectedRow = _rows[2];
+                        FindValidPosition();
+
+                        break;
                 }
+
             }
             else
             {
-                EventSystem.current.SetSelectedGameObject(_diceStartPosition);
+                Debug.Log("fila completa");
+            }
+        }
+    }
+
+    public void FindValidPosition()
+    {
+        //Busca una posicion valida
+        for (int i = 0; i < 3; i++) // busca en la fila
+        {
+            for (int x = 0; x < _selectedRow.transform.childCount; x++) //busca en las posiciones de la fila
+            {
+                if (_selectedRow.transform.GetChild(i).transform.childCount > 0) //si el primer hijo de la fila tiene dado
+                {
+                    //Casilla invalida
+                    Debug.Log(_selectedRow.transform.GetChild(i).transform.name + " invalido");
+                }
+                else //si no tiene dado
+                {
+                    //Coloca el dado en esta casilla
+                    Debug.Log("Dado colocado en " + _selectedRow.transform.GetChild(i).transform.name);
+                    return;
+                }
             }
         }
     }
