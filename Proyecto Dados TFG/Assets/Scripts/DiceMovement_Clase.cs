@@ -58,7 +58,7 @@ public class DiceMovement_Clase : MonoBehaviour
                 }
 
             }
-            else
+            else //la fila esta completa
             {
                 Debug.Log("fila completa");
             }

@@ -345,7 +345,8 @@ MonoBehaviour:
   - {fileID: 2117107708}
   - {fileID: 141956699}
   - {fileID: 1903833363}
-  instaciatedDice: {fileID: 0}
+  instaciatedDice: {fileID: 322444143}
+  diceGenerator: {fileID: 214872735}
 --- !u!1 &211747919
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,7 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c3e90774d3382f4ca55fdc1df7ace9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceMovememt: {fileID: 1275766521}
+  diceMovement: {fileID: 153326861}
   diceGameobject: {fileID: 2927216603453682656, guid: cb3298af97bb5a64a963858f065d9668, type: 3}
   diceInstancePos: {fileID: 1327986078}
   diceInstance: {fileID: 0}
@@ -597,6 +598,37 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &322444143
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 322444144}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &322444144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322444143}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &369380847
 GameObject:
   m_ObjectHideFlags: 0
@@ -1301,19 +1333,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 933957574}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 214872736}
-        m_TargetAssemblyTypeName: DiceGenerator_Clase, Assembly-CSharp
-        m_MethodName: GenerateDice
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &933957574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2141,3 +2161,4 @@ SceneRoots:
   - {fileID: 247934397}
   - {fileID: 369380848}
   - {fileID: 153326863}
+  - {fileID: 322444144}

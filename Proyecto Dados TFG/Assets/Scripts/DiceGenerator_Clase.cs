@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class DiceGenerator_Clase : MonoBehaviour
 {
-    DiceMovement_Clase diceMovement_Clase;
     DiceInfo_Clase diceInfo_Clase;
+    DiceMovement_Clase diceMovement_Clase;
     [SerializeField] GameObject diceMovement;
     [SerializeField] GameObject diceGameobject;
 
