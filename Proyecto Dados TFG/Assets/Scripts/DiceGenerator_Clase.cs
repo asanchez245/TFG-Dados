@@ -24,6 +24,7 @@ public class DiceGenerator_Clase : MonoBehaviour
 
     void Update()
     {
+        Random.seed = System.DateTime.Now.Millisecond; //randomiza mas el randomizer (por la cara)
         
     }
 
