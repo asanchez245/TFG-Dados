@@ -11,10 +11,14 @@ public class DiceMovement_Clase : MonoBehaviour
     GameObject _selectedRow;
 
     public GameObject instaciatedDice;
-  
+
+
+    [SerializeField] GameObject diceGenerator;
+    DiceGenerator_Clase diceGenerator_Clase;
 
     void Start()
     {
+        diceGenerator_Clase = diceGenerator.GetComponent<DiceGenerator_Clase>();
         EventSystem.current.SetSelectedGameObject(_diceStartPosition);
     }
 
@@ -25,8 +29,8 @@ public class DiceMovement_Clase : MonoBehaviour
             if (EventSystem.current.currentSelectedGameObject == _diceStartPosition) //se selecciona el dado
             {
                 EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false; //desactiva el boton del dado
-
-                EventSystem.current.SetSelectedGameObject(_firstRowSelection);
+                diceGenerator_Clase.GenerateDice();
+                EventSystem.current.SetSelectedGameObject(_firstRowSelection); //psa automaticamente a seleccionar la primera fila
                 return;
             }
             if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable) //selecciona una fila valida
@@ -76,10 +80,13 @@ public class DiceMovement_Clase : MonoBehaviour
                 else //si no tiene dado
                 {
                     //Coloca el dado en esta casilla
-                    instaciatedDice.transform.parent = _selectedRow.transform.GetChild(i);
-                    instaciatedDice.transform.position = Vector3.zero;
+                    instaciatedDice.transform.parent = _selectedRow.transform.GetChild(i); //emparenta al dado con la casilla
+                    instaciatedDice.transform.position = _selectedRow.transform.GetChild(i).position; //lo coloca en el centro de esta
                     Debug.Log("Dado colocado en " + _selectedRow.transform.GetChild(i).transform.name);
-                    
+
+
+                    EventSystem.current.SetSelectedGameObject(_diceStartPosition); //vuelve a seleccionar la pos inicial del dado
+                    EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = true; //activa el boton
                     return;
                 }
             }
