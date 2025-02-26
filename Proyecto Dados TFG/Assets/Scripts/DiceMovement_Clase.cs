@@ -9,6 +9,8 @@ public class DiceMovement_Clase : MonoBehaviour
     [SerializeField] GameObject _firstRowSelection;
     [SerializeField] GameObject[] _rows;
     GameObject _selectedRow;
+
+    public GameObject instaciatedDice;
   
 
     void Start()
@@ -74,7 +76,10 @@ public class DiceMovement_Clase : MonoBehaviour
                 else //si no tiene dado
                 {
                     //Coloca el dado en esta casilla
+                    instaciatedDice.transform.parent = _selectedRow.transform.GetChild(i);
+                    instaciatedDice.transform.position = Vector3.zero;
                     Debug.Log("Dado colocado en " + _selectedRow.transform.GetChild(i).transform.name);
+                    
                     return;
                 }
             }

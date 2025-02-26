@@ -345,6 +345,7 @@ MonoBehaviour:
   - {fileID: 2117107708}
   - {fileID: 141956699}
   - {fileID: 1903833363}
+  instaciatedDice: {fileID: 0}
 --- !u!1 &211747919
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,6 +376,54 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2117107709}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &214872735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 214872737}
+  - component: {fileID: 214872736}
+  m_Layer: 0
+  m_Name: DiceGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &214872736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214872735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c3e90774d3382f4ca55fdc1df7ace9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  diceMovememt: {fileID: 1275766521}
+  diceGameobject: {fileID: 2927216603453682656, guid: cb3298af97bb5a64a963858f065d9668, type: 3}
+  diceInstancePos: {fileID: 1327986078}
+  diceInstance: {fileID: 0}
+--- !u!4 &214872737
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214872735}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1785182723}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &247934396
 GameObject:
@@ -408,6 +457,7 @@ Transform:
   - {fileID: 2117107709}
   - {fileID: 141956700}
   - {fileID: 1903833364}
+  - {fileID: 1327986079}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &284356635
@@ -1251,7 +1301,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 933957574}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 214872736}
+        m_TargetAssemblyTypeName: DiceGenerator_Clase, Assembly-CSharp
+        m_MethodName: GenerateDice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &933957574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1510,6 +1572,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bbe562fc265fdc4b855817af403fb62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1327986078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1327986079}
+  m_Layer: 0
+  m_Name: DiceStartPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1327986079
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327986078}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8, y: 4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 247934397}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1548988608
 GameObject:
   m_ObjectHideFlags: 0
@@ -1702,6 +1795,7 @@ Transform:
   m_Children:
   - {fileID: 1275766522}
   - {fileID: 2106660164}
+  - {fileID: 214872737}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1874819241

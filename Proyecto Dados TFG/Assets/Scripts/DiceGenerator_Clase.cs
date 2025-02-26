@@ -6,17 +6,19 @@ using UnityEngine.UI;
 
 public class DiceGenerator_Clase : MonoBehaviour
 {
-    [SerializeField] GameObject diceMovememt;
     DiceMovement_Clase diceMovement_Clase;
     DiceInfo_Clase diceInfo_Clase;
-    GameObject diceInstance;
-
+    [SerializeField] GameObject diceMovement;
     [SerializeField] GameObject diceGameobject;
+
+    [SerializeField] GameObject diceInstancePos;
+    public GameObject diceInstance;
+
 
     void Awake()
     {
-        diceMovement_Clase = diceMovememt.GetComponent<DiceMovement_Clase>();
-        diceInfo_Clase = diceInstance.GetComponent<DiceInfo_Clase>();
+        diceMovement_Clase = diceMovement.GetComponent<DiceMovement_Clase>();
+        diceInfo_Clase = diceGameobject.GetComponent<DiceInfo_Clase>();
 
     }
 
@@ -27,9 +29,14 @@ public class DiceGenerator_Clase : MonoBehaviour
 
     public void GenerateDice()
     {
-        int random = Random.Range(1, 7);
-        diceInstance = Instantiate(diceGameobject);
-        diceInfo_Clase.diceValue = random;
-        //diceInfo_Clase.diceArtwork = diceInfo_Clase.diceArtwork[random];
+        diceMovement_Clase.instaciatedDice = null;
+        int random = Random.Range(0, 6);
+        diceInstance = Instantiate(diceGameobject, diceInstancePos.transform.position, transform.rotation);
+        diceInstance.GetComponent<SpriteRenderer>().sprite = diceInfo_Clase.diceArtwork[random];
+        diceInstance.GetComponent<DiceInfo_Clase>().diceValue = random + 1;
+
+        diceMovement_Clase.instaciatedDice = diceInstance;
+        Debug.Log("Instanciado dado " + diceInstance.GetComponent<DiceInfo_Clase>().diceValue);
+
     }
 }
