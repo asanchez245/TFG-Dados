@@ -5,63 +5,100 @@ using UnityEngine.UI;
 
 public class DiceMovement_Clase : MonoBehaviour
 {
-    [SerializeField] GameObject _diceStartPosition;
-    [SerializeField] GameObject _firstRowSelection;
+    [SerializeField] GameObject[] _diceStartPosition;
+    GameObject _currentStartPosition;
+    [SerializeField] GameObject[] _firstRowSelection;
+    GameObject _currentFirstRowSelection;
     [SerializeField] GameObject[] _rows;
     GameObject _selectedRow;
 
-    public GameObject instaciatedDice;
-
-
     [SerializeField] GameObject diceGenerator;
-    DiceGenerator_Clase diceGenerator_Clase;
+    DiceGenerator_Clase diceGenerator_Clase; 
+    [SerializeField] GameObject turnManager;
+    TurnManager turnManager_Clase;
 
     void Start()
     {
         diceGenerator_Clase = diceGenerator.GetComponent<DiceGenerator_Clase>();
-        EventSystem.current.SetSelectedGameObject(_diceStartPosition);
+        turnManager_Clase = turnManager.GetComponent<TurnManager>();
+
+        EventSystem.current.SetSelectedGameObject(_diceStartPosition[0]); //setea el boton seleccionado el de generar el dado del jugador 1
     }
 
     void Update()
     {
         if (InputManager.instance.SelectInput) //Se acciona el intro o boton A del mando
         {
-            if (EventSystem.current.currentSelectedGameObject == _diceStartPosition) //se selecciona el dado
+            switch (turnManager_Clase.p1Turn)
             {
-                EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false; //desactiva el boton del dado
-                diceGenerator_Clase.GenerateDice();
-                EventSystem.current.SetSelectedGameObject(_firstRowSelection); //psa automaticamente a seleccionar la primera fila
-                return;
+                case true: //turno de P1
+                    _currentStartPosition = _diceStartPosition[0]; //setea la pos inicial del p1
+                    _currentFirstRowSelection = _firstRowSelection[0]; //setea la primera fila escogida a la 1 del p1
+                    SelectAction();
+                    break;
+                case false: //turno de P2
+                    _currentStartPosition = _diceStartPosition[1]; //setea la pos inicial del p2
+                    _currentFirstRowSelection = _firstRowSelection[1]; //setea la primera fila escogida a la 1 del p2
+                    SelectAction();
+                    break;
             }
-            if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable) //selecciona una fila valida
+        }
+    }
+    public void SelectAction()
+    {
+        if (EventSystem.current.currentSelectedGameObject == _currentStartPosition) //se selecciona el dado
+        {
+            EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false; //desactiva el boton del dado
+            diceGenerator_Clase.GenerateDice();
+            EventSystem.current.SetSelectedGameObject(_currentFirstRowSelection); //psa automaticamente a seleccionar la primera fila
+            return;
+        }
+        if (EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable) //selecciona una fila valida
+        {
+            //Switch segun el nombre del boton (flecha9 que selecciona la fila
+            switch (EventSystem.current.currentSelectedGameObject.GetComponent<Button>().transform.name)
             {
-                //Switch segun el nombre del boton (flecha9 que selecciona la fila
-                switch (EventSystem.current.currentSelectedGameObject.GetComponent<Button>().transform.name)
-                {
-                    case ("Flecha 1"):
-                        _selectedRow = _rows[0];
-                        FindValidPosition();
+                case ("Flecha 1"):
+                    _selectedRow = _rows[0];
+                    FindValidPosition();
 
-                        break;
+                    break;
 
-                    case ("Flecha 2"):
-                        _selectedRow = _rows[1];
-                        FindValidPosition();
+                case ("Flecha 2"):
+                    _selectedRow = _rows[1];
+                    FindValidPosition();
 
-                        break;
+                    break;
 
-                    case ("Flecha 3"):
-                        _selectedRow = _rows[2];
-                        FindValidPosition();
+                case ("Flecha 3"):
+                    _selectedRow = _rows[2];
+                    FindValidPosition();
 
-                        break;
-                }
+                    break;
 
+                case ("Flecha 4"):
+                    _selectedRow = _rows[3];
+                    FindValidPosition();
+
+                    break;
+
+                case ("Flecha 5"):
+                    _selectedRow = _rows[4];
+                    FindValidPosition();
+
+                    break;
+
+                case ("Flecha 6"):
+                    _selectedRow = _rows[5];
+                    FindValidPosition();
+
+                    break;
             }
-            else //la fila esta completa
-            {
-                Debug.Log("fila completa");
-            }
+
+        }
+        else //la fila esta completa
+        {
+            Debug.Log("fila completa");
         }
     }
 
@@ -80,13 +117,15 @@ public class DiceMovement_Clase : MonoBehaviour
                 else //si no tiene dado
                 {
                     //Coloca el dado en esta casilla
-                    instaciatedDice.transform.parent = _selectedRow.transform.GetChild(i); //emparenta al dado con la casilla
-                    instaciatedDice.transform.position = _selectedRow.transform.GetChild(i).position; //lo coloca en el centro de esta
+                    diceGenerator_Clase.instaciatedDice.transform.parent = _selectedRow.transform.GetChild(i); //emparenta al dado con la casilla
+                    diceGenerator_Clase.instaciatedDice.transform.position = _selectedRow.transform.GetChild(i).position; //lo coloca en el centro de esta
                     Debug.Log("Dado colocado en " + _selectedRow.transform.GetChild(i).transform.name);
 
-
-                    EventSystem.current.SetSelectedGameObject(_diceStartPosition); //vuelve a seleccionar la pos inicial del dado
+                    _currentStartPosition = turnManager_Clase.p1Turn ? _diceStartPosition[1] : _diceStartPosition[0]; //if p1 turno select p2start pos y viceversa
+                    EventSystem.current.SetSelectedGameObject(_currentStartPosition); //vuelve a seleccionar la pos inicial del dado
                     EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = true; //activa el boton
+
+                    turnManager_Clase.ChangePlayerTurn();
                     return;
                 }
             }

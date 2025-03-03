@@ -13,6 +13,7 @@ public class DiceGenerator_Clase : MonoBehaviour
 
     [SerializeField] GameObject diceInstancePos;
     public GameObject diceInstance;
+    public GameObject instaciatedDice;
 
 
     void Awake()
@@ -30,13 +31,14 @@ public class DiceGenerator_Clase : MonoBehaviour
 
     public void GenerateDice()
     {
-        diceMovement_Clase.instaciatedDice = null;
+        instaciatedDice = null;
+        
         int random = Random.Range(0, 6);
         diceInstance = Instantiate(diceGameobject, diceInstancePos.transform.position, transform.rotation);
         diceInstance.GetComponent<SpriteRenderer>().sprite = diceInfo_Clase.diceArtwork[random];
         diceInstance.GetComponent<DiceInfo_Clase>().diceValue = random + 1;
 
-        diceMovement_Clase.instaciatedDice = diceInstance;
+        instaciatedDice = diceInstance;
         Debug.Log("Instanciado dado " + diceInstance.GetComponent<DiceInfo_Clase>().diceValue);
 
     }
