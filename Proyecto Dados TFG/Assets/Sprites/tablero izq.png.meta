@@ -384,7 +384,18 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      tablero izq_0: 5744791935880882665
+      tablero izq_1: -4297943007068887834
+      tablero izq_10: 5948191918391038332
+      tablero izq_2: 5478664803164617735
+      tablero izq_3: -1847190348720133920
+      tablero izq_4: 7388850360230182849
+      tablero izq_5: -6475361957703425499
+      tablero izq_6: -4541120917817674580
+      tablero izq_7: -5981052701930278345
+      tablero izq_8: 8989443217323776234
+      tablero izq_9: 3486724426392366525
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
