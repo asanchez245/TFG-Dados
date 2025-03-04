@@ -585,9 +585,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diceMovement: {fileID: 153326861}
   diceGameobject: {fileID: 2927216603453682656, guid: cb3298af97bb5a64a963858f065d9668, type: 3}
-  diceInstancePos: {fileID: 1327986078}
   diceInstance: {fileID: 0}
   instaciatedDice: {fileID: 0}
+  diceSpawnPosition:
+  - {fileID: 1327986078}
+  - {fileID: 1524498447}
+  currentSpawnPosition: {fileID: 0}
 --- !u!4 &214872737
 Transform:
   m_ObjectHideFlags: 0
@@ -2276,6 +2279,7 @@ MonoBehaviour:
   _diceStartPosition:
   - {fileID: 933957571}
   - {fileID: 1199853273}
+  _currentStartPosition: {fileID: 0}
   _firstRowSelection:
   - {fileID: 387547817}
   - {fileID: 1025573350}
@@ -2286,6 +2290,7 @@ MonoBehaviour:
   - {fileID: 1548988608}
   - {fileID: 1756610657}
   - {fileID: 2043675835}
+  _selectedRow: {fileID: 0}
   diceGenerator: {fileID: 214872735}
   turnManager: {fileID: 2035540617}
 --- !u!1 &1199853273

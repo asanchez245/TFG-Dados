@@ -9,10 +9,6 @@ public class TurnManager : MonoBehaviour
     public GameObject[] p1RowSelectionButtons;
     public GameObject[] p2RowSelectionButtons;
 
-    void Start()
-    {
-        
-    }
 
     void Update()
     {

@@ -11,9 +11,11 @@ public class DiceGenerator_Clase : MonoBehaviour
     [SerializeField] GameObject diceMovement;
     [SerializeField] GameObject diceGameobject;
 
-    [SerializeField] GameObject diceInstancePos;
     public GameObject diceInstance;
     public GameObject instaciatedDice;
+
+    public GameObject[] diceSpawnPosition;
+    /*[HideInInspector]*/  public GameObject currentSpawnPosition;
 
 
     void Awake()
@@ -25,16 +27,14 @@ public class DiceGenerator_Clase : MonoBehaviour
 
     void Update()
     {
-        Random.seed = System.DateTime.Now.Millisecond; //randomiza mas el randomizer (por la cara)
-        
+        Random.seed = System.DateTime.Now.Millisecond; //randomiza mas el randomizer (por la cara)        
     }
 
     public void GenerateDice()
     {
         instaciatedDice = null;
-        
         int random = Random.Range(0, 6);
-        diceInstance = Instantiate(diceGameobject, diceInstancePos.transform.position, transform.rotation);
+        diceInstance = Instantiate(diceGameobject, currentSpawnPosition.transform.position, transform.rotation);
         diceInstance.GetComponent<SpriteRenderer>().sprite = diceInfo_Clase.diceArtwork[random];
         diceInstance.GetComponent<DiceInfo_Clase>().diceValue = random + 1;
 
