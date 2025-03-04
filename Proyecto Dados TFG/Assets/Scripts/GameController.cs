@@ -15,6 +15,10 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject panelWinP2_GO;
 
 
+    int[] rowResult;
+
+
+
     void Start()
     {
         diceMovement_Clase = diceMovement.GetComponent<DiceMovement_Clase>();
@@ -30,16 +34,28 @@ public class GameController : MonoBehaviour
 
     public void CompareRowPoints()
     {
-        int row1Resutl = pointsManager_Clase.rowTotalValueP1[0] - pointsManager_Clase.rowTotalValueP2[0];
-        int row2Resutl = pointsManager_Clase.rowTotalValueP1[1] - pointsManager_Clase.rowTotalValueP2[1];
-        int row3Resutl = pointsManager_Clase.rowTotalValueP1[2] - pointsManager_Clase.rowTotalValueP2[2];
+        rowResult[0] = pointsManager_Clase.rowTotalValueP1[0] - pointsManager_Clase.rowTotalValueP2[0];
+        rowResult[1] = pointsManager_Clase.rowTotalValueP1[1] - pointsManager_Clase.rowTotalValueP2[1];
+        rowResult[2] = pointsManager_Clase.rowTotalValueP1[2] - pointsManager_Clase.rowTotalValueP2[2];
 
-        //switch ()
-        //{
-        //    case row1Resutl > 0:
+        switch (rowResult[0] == 0)
+        {
+            case true:
+                //EMPATE
+                break;
 
-        //        break;
-        //}
+            case false:
+                if (rowResult[0] > 0)
+                {
+                    //GANA LA LINEA P1
+                }
+                else
+                {
+                    //GANA LA LINEA P2
+                }
+
+                break;
+        }
     }
 
     public void SelectWinner()
