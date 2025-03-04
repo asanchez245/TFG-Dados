@@ -6,11 +6,13 @@ using UnityEngine.UI;
 public class DiceMovement_Clase : MonoBehaviour
 {
     [SerializeField] GameObject[] _diceStartPosition;
-    GameObject _currentStartPosition;
+    public GameObject _currentStartPosition;
+
     [SerializeField] GameObject[] _firstRowSelection;
     GameObject _currentFirstRowSelection;
+
     [SerializeField] GameObject[] _rows;
-    GameObject _selectedRow;
+    public GameObject _selectedRow;
 
     [SerializeField] GameObject diceGenerator;
     DiceGenerator_Clase diceGenerator_Clase; 
@@ -23,6 +25,8 @@ public class DiceMovement_Clase : MonoBehaviour
         turnManager_Clase = turnManager.GetComponent<TurnManager>();
 
         EventSystem.current.SetSelectedGameObject(_diceStartPosition[0]); //setea el boton seleccionado el de generar el dado del jugador 1
+
+        diceGenerator_Clase.currentSpawnPosition = diceGenerator_Clase.diceSpawnPosition[0]; //al empezar default la pos de spawn del dado el la del p1
     }
 
     void Update()
@@ -34,11 +38,13 @@ public class DiceMovement_Clase : MonoBehaviour
                 case true: //turno de P1
                     _currentStartPosition = _diceStartPosition[0]; //setea la pos inicial del p1
                     _currentFirstRowSelection = _firstRowSelection[0]; //setea la primera fila escogida a la 1 del p1
+                    diceGenerator_Clase.currentSpawnPosition = diceGenerator_Clase.diceSpawnPosition[0];
                     SelectAction();
                     break;
                 case false: //turno de P2
                     _currentStartPosition = _diceStartPosition[1]; //setea la pos inicial del p2
                     _currentFirstRowSelection = _firstRowSelection[1]; //setea la primera fila escogida a la 1 del p2
+                    diceGenerator_Clase.currentSpawnPosition = diceGenerator_Clase.diceSpawnPosition[1];
                     SelectAction();
                     break;
             }
@@ -122,6 +128,8 @@ public class DiceMovement_Clase : MonoBehaviour
                     Debug.Log("Dado colocado en " + _selectedRow.transform.GetChild(i).transform.name);
 
                     _currentStartPosition = turnManager_Clase.p1Turn ? _diceStartPosition[1] : _diceStartPosition[0]; //if p1 turno select p2start pos y viceversa
+                    diceGenerator_Clase.currentSpawnPosition = turnManager_Clase.p1Turn ? 
+                        diceGenerator_Clase.diceSpawnPosition[1] : diceGenerator_Clase.diceSpawnPosition[0]; //if p1 turno select p2start pos y viceversa
                     EventSystem.current.SetSelectedGameObject(_currentStartPosition); //vuelve a seleccionar la pos inicial del dado
                     EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = true; //activa el boton
 
