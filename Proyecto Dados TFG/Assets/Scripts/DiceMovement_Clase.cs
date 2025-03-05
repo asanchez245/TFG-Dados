@@ -5,6 +5,15 @@ using UnityEngine.UI;
 
 public class DiceMovement_Clase : MonoBehaviour
 {
+    [Header("Variables Scripts")]
+    [SerializeField] GameObject diceGenerator;
+    DiceGenerator_Clase diceGenerator_Clase; 
+    [SerializeField] GameObject turnManager;
+    TurnManager turnManager_Clase;
+    [SerializeField] GameObject _caraCruzController;
+    [SerializeField] GameObject _gameController;
+
+    [Header("Variables Movimiento Dados")]
     [SerializeField] GameObject[] _diceStartPosition;
     public GameObject _currentStartPosition;
 
@@ -14,12 +23,9 @@ public class DiceMovement_Clase : MonoBehaviour
     [SerializeField] GameObject[] _rows;
     public GameObject _selectedRow;
 
-    [SerializeField] GameObject diceGenerator;
-    DiceGenerator_Clase diceGenerator_Clase; 
-    [SerializeField] GameObject turnManager;
-    TurnManager turnManager_Clase;
-
-    [SerializeField] GameObject _caraCruzController;
+    [Header("Variables Terminar Partida")]
+    [SerializeField] GameObject[] _allDicePos;
+    bool allPosFilled = false;
 
     void Start()
     {
@@ -149,10 +155,34 @@ public class DiceMovement_Clase : MonoBehaviour
                     EventSystem.current.SetSelectedGameObject(_currentStartPosition); //vuelve a seleccionar la pos inicial del dado
                     EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = true; //activa el boton
 
+                    CheckAllDicePos();
                     turnManager_Clase.ChangePlayerTurn();
                     return;
                 }
             }
+        }
+    }
+
+    public void CheckAllDicePos()
+    {
+        bool cumplenCondicion = true;
+
+        foreach (GameObject obj in _allDicePos)
+        {
+            if (obj == null || obj.transform.childCount == 0)
+            {
+                cumplenCondicion = false;
+                break; // Si uno falla, ya no es necesario seguir revisando
+            }
+        }
+
+        // Si antes era falso y ahora se cumple, lo actualizamos y ejecutamos la acción
+        if (!allPosFilled && cumplenCondicion)
+        {
+            Debug.Log("posiciones llenas");
+            allPosFilled = true;
+            turnManager_Clase.gameRunning = false;            
+            _gameController.GetComponent<GameController>().EndGame();
         }
     }
 }

@@ -56,7 +56,7 @@ public class CaraCruz_Controller : MonoBehaviour
         {
             //turno del player que elige la moneda se mantiene
             diceMovement.SetActive(true);
-            turnManager_Clase.gameStarts = true;
+            turnManager_Clase.gameRunning = true;
             
         }
         else
@@ -64,7 +64,7 @@ public class CaraCruz_Controller : MonoBehaviour
             //el turno del player que elige cambia
             turnManager_Clase.ChangePlayerTurn();
             diceMovement.SetActive(true);
-            turnManager_Clase.gameStarts = true;
+            turnManager_Clase.gameRunning = true;
         }
     }
 

@@ -9,12 +9,12 @@ public class TurnManager : MonoBehaviour
     public GameObject[] p1RowSelectionButtons;
     public GameObject[] p2RowSelectionButtons;
 
-    public bool gameStarts;
+    public bool gameRunning;
 
 
     void Update()
     {
-        if (gameStarts)
+        if (gameRunning)
         {
             switch (p1Turn)
             {
@@ -40,15 +40,19 @@ public class TurnManager : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < p1RowSelectionButtons.Length; i++)
-            {
-                p1RowSelectionButtons[i].SetActive(false);
-                p2RowSelectionButtons[i].SetActive(false);
-            }
+            QuitPlayerDiceInput();
         }
 
     }
+    public void QuitPlayerDiceInput()
+    {
+        for (int i = 0; i < p1RowSelectionButtons.Length; i++)
+        {
+            p1RowSelectionButtons[i].SetActive(false);
+            p2RowSelectionButtons[i].SetActive(false);
+        }
 
+    }
     public void ChangePlayerTurn()
     {
         p1Turn = !p1Turn;

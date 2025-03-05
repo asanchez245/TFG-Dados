@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,8 @@ public class GameController : MonoBehaviour
     [Header("Paneles fin de juego")]
     [SerializeField] GameObject panelWinP1_GO;
     [SerializeField] GameObject panelWinP2_GO;
+    [SerializeField] GameObject panelEmpate_GO;
+
 
 
     public int[] rowResult;
@@ -29,6 +32,14 @@ public class GameController : MonoBehaviour
         pointsManager_Clase = pointsManager.GetComponent<PointsManager_Clase>();
         panelWinP1_GO.SetActive(false);
         panelWinP2_GO.SetActive(false);
+        panelEmpate_GO.SetActive(false);
+    }
+
+    public void EndGame()
+    {
+        CompareRowPoints();
+        SelectRoundWinner();
+        StartCoroutine(SelectGameWinner());
     }
 
     public void CompareRowPoints()
@@ -125,17 +136,29 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void SelectGameWinner()
+    public IEnumerator SelectGameWinner()
     {
-        if(roundsWinnedP1 == 1)
+        yield return new WaitForSeconds(2);
+        switch(roundsWinnedP1 == 0)
         {
-            Debug.Log("Player 1 wins");
-            panelWinP1_GO.SetActive(true);
-        }
-        if (roundsWinnedP2 == 1)
-        {
-            Debug.Log("Player 2 wins");
-            panelWinP2_GO.SetActive(true);
+            case true:
+                if(roundsWinnedP2 == 1)
+                {
+                    Debug.Log("Player 2 wins");
+                    panelWinP2_GO.SetActive(true);
+                }
+                else
+                {
+                    Debug.Log("Empate");
+                    panelEmpate_GO.SetActive(true);
+                }
+
+                break;
+            case false:
+                Debug.Log("Player 1 wins");
+                panelWinP1_GO.SetActive(true);
+
+                break;
         }
     }
 }

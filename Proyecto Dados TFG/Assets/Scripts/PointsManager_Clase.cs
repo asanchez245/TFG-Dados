@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,12 +23,18 @@ public class PointsManager_Clase : MonoBehaviour
     public int[] rowHorizontalValueP2;
     public int[] rowDiagonalValueP2;
 
-    void Update()
+    private void Update()
+    {
+        AllPointsCalculation();
+    }
+
+    public void AllPointsCalculation()
     {
         RowFinalValueCalculation();
         RowBasicCalculation();
         HorizontalValueCalculation();
         DiagonalValueCalculation();
+
     }
 
     public void RowFinalValueCalculation()
