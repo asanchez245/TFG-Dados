@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      flecha 2_0: -8718699601870359987
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
