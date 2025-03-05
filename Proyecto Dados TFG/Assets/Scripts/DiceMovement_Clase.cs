@@ -19,14 +19,30 @@ public class DiceMovement_Clase : MonoBehaviour
     [SerializeField] GameObject turnManager;
     TurnManager turnManager_Clase;
 
+    [SerializeField] GameObject _caraCruzController;
+
     void Start()
     {
+        _caraCruzController.SetActive(false);
+
         diceGenerator_Clase = diceGenerator.GetComponent<DiceGenerator_Clase>();
         turnManager_Clase = turnManager.GetComponent<TurnManager>();
 
-        EventSystem.current.SetSelectedGameObject(_diceStartPosition[0]); //setea el boton seleccionado el de generar el dado del jugador 1
-
-        diceGenerator_Clase.currentSpawnPosition = diceGenerator_Clase.diceSpawnPosition[0]; //al empezar default la pos de spawn del dado el la del p1
+        switch (turnManager_Clase.p1Turn)
+        {
+            case true: //turno de P1
+                _currentStartPosition = _diceStartPosition[0]; //setea la pos inicial del p1
+                _currentFirstRowSelection = _firstRowSelection[0]; //setea la primera fila escogida a la 1 del p1
+                diceGenerator_Clase.currentSpawnPosition = diceGenerator_Clase.diceSpawnPosition[0];
+                EventSystem.current.SetSelectedGameObject(_diceStartPosition[0]); //setea el boton seleccionado el de generar el dado del jugador 1
+                break;
+            case false: //turno de P2
+                _currentStartPosition = _diceStartPosition[1]; //setea la pos inicial del p2
+                _currentFirstRowSelection = _firstRowSelection[1]; //setea la primera fila escogida a la 1 del p2
+                diceGenerator_Clase.currentSpawnPosition = diceGenerator_Clase.diceSpawnPosition[1];
+                EventSystem.current.SetSelectedGameObject(_diceStartPosition[1]); //setea el boton seleccionado el de generar el dado del jugador 1
+                break;
+        }
     }
 
     void Update()

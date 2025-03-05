@@ -27,18 +27,18 @@ public class GameController : MonoBehaviour
     {
         diceMovement_Clase = diceMovement.GetComponent<DiceMovement_Clase>();
         pointsManager_Clase = pointsManager.GetComponent<PointsManager_Clase>();
+        panelWinP1_GO.SetActive(false);
+        panelWinP2_GO.SetActive(false);
+
 
     }
 
     public void CompareRowPoints()
     {
-        //rowResult[0] = pointsManager_Clase.rowTotalValueP1[0] - pointsManager_Clase.rowTotalValueP2[0];
-        //rowResult[1] = pointsManager_Clase.rowTotalValueP1[1] - pointsManager_Clase.rowTotalValueP2[1];
-        //rowResult[2] = pointsManager_Clase.rowTotalValueP1[2] - pointsManager_Clase.rowTotalValueP2[2];
+        rowResult[0] = pointsManager_Clase.rowTotalValueP1[0] - pointsManager_Clase.rowTotalValueP2[0];
+        rowResult[1] = pointsManager_Clase.rowTotalValueP1[1] - pointsManager_Clase.rowTotalValueP2[1];
+        rowResult[2] = pointsManager_Clase.rowTotalValueP1[2] - pointsManager_Clase.rowTotalValueP2[2];
 
-        rowResult[0] = pointsManager.GetComponent<PointsManager_Clase>().rowTotalValueP1[0] - pointsManager.GetComponent<PointsManager_Clase>().rowTotalValueP2[0];
-        rowResult[1] = pointsManager.GetComponent<PointsManager_Clase>().rowTotalValueP1[1] - pointsManager.GetComponent<PointsManager_Clase>().rowTotalValueP2[1];
-        rowResult[2] = pointsManager.GetComponent<PointsManager_Clase>().rowTotalValueP1[2] - pointsManager.GetComponent<PointsManager_Clase>().rowTotalValueP2[2];
 
         switch (rowResult[0] == 0)
         {
@@ -114,12 +114,12 @@ public class GameController : MonoBehaviour
             case false:
                 if (rowsWinnedP1 > rowsWinnedP2)
                 {
-                    //GANA LA LINEA P1
+                    //GANA LA RONDA P1
                     roundsWinnedP1 += 1;
                 }
                 else
                 {
-                    //GANA LA LINEA P2
+                    //GANA LA RONDA P2
                     roundsWinnedP2 += 1;
                 }
 
@@ -132,10 +132,12 @@ public class GameController : MonoBehaviour
         if(roundsWinnedP1 == 1)
         {
             Debug.Log("Player 1 wins");
+            panelWinP1_GO.SetActive(true);
         }
         if (roundsWinnedP2 == 1)
         {
             Debug.Log("Player 2 wins");
+            panelWinP2_GO.SetActive(true);
         }
     }
 }
