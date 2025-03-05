@@ -29,8 +29,6 @@ public class GameController : MonoBehaviour
         pointsManager_Clase = pointsManager.GetComponent<PointsManager_Clase>();
         panelWinP1_GO.SetActive(false);
         panelWinP2_GO.SetActive(false);
-
-
     }
 
     public void CompareRowPoints()
