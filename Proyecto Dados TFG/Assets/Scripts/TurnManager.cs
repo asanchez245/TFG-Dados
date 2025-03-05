@@ -9,29 +9,42 @@ public class TurnManager : MonoBehaviour
     public GameObject[] p1RowSelectionButtons;
     public GameObject[] p2RowSelectionButtons;
 
+    public bool gameStarts;
+
 
     void Update()
     {
-        switch (p1Turn)
+        if (gameStarts)
         {
-            case true: //turno p1
-                for (int i = 0; i < p1RowSelectionButtons.Length; i++)
-                {
-                    p1RowSelectionButtons[i].SetActive(true);
-                    p2RowSelectionButtons[i].SetActive(false);
-                }
+            switch (p1Turn)
+            {
+                case true: //turno p1
+                    for (int i = 0; i < p1RowSelectionButtons.Length; i++)
+                    {
+                        p1RowSelectionButtons[i].SetActive(true);
+                        p2RowSelectionButtons[i].SetActive(false);
+                    }
 
 
-                break;
-            case false: //turno p2
-                for (int i = 0; i < p1RowSelectionButtons.Length; i++)
-                {
-                    p1RowSelectionButtons[i].SetActive(false);
-                    p2RowSelectionButtons[i].SetActive(true);
-                }
+                    break;
+                case false: //turno p2
+                    for (int i = 0; i < p1RowSelectionButtons.Length; i++)
+                    {
+                        p1RowSelectionButtons[i].SetActive(false);
+                        p2RowSelectionButtons[i].SetActive(true);
+                    }
 
 
-                break;
+                    break;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < p1RowSelectionButtons.Length; i++)
+            {
+                p1RowSelectionButtons[i].SetActive(false);
+                p2RowSelectionButtons[i].SetActive(false);
+            }
         }
 
     }
