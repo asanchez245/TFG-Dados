@@ -17,6 +17,7 @@ public class CaraCruz_Controller : MonoBehaviour
 
     void Start()
     {
+        diceMovement.SetActive(false);
         turnManager_Clase = turnManager.GetComponent<TurnManager>();
         _botonCara.SetActive(true);
         _botonCruz.SetActive(true);
