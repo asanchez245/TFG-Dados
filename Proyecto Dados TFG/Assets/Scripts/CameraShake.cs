@@ -2,6 +2,7 @@ using DG.Tweening;
 using Unity.Cinemachine;
 using UnityEngine;
 
+
 public class CameraShake : MonoBehaviour
 {
     public Camera _virtualCamera;
@@ -16,18 +17,18 @@ public class CameraShake : MonoBehaviour
     {
         
     }
-    //public void CameraShakes(float intensity, float duration)
-    //{
-    //    CinemachineBasicMultiChannelPerlin noise = _virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+    public void CameraShakes(float intensity, float duration)
+    {
+        //CinemachineBasicMultiChannelPerlin noise = _virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
-    //    // Asegurar que el ruido comienza en 0
-    //    noise.m_AmplitudeGain = 0;
+        //// Asegurar que el ruido comienza en 0
+        //noise.m_AmplitudeGain = 0;
 
-    //    // Aplicar DOTween: sube a la intensidad deseada y luego baja a 0
-    //    DOTween.To(() => noise.m_AmplitudeGain, x => noise.m_AmplitudeGain = x, intensity, duration * 0.5f)
-    //        .OnComplete(() =>
-    //        {
-    //            DOTween.To(() => noise.m_AmplitudeGain, x => noise.m_AmplitudeGain = x, 0, duration * 0.5f);
-    //        });
-    //}
+        //// Aplicar DOTween: sube a la intensidad deseada y luego baja a 0
+        //DOTween.To(() => noise.m_AmplitudeGain, x => noise.m_AmplitudeGain = x, intensity, duration * 0.5f)
+        //    .OnComplete(() =>
+        //    {
+        //        DOTween.To(() => noise.m_AmplitudeGain, x => noise.m_AmplitudeGain = x, 0, duration * 0.5f);
+        //    });
+    }
 }

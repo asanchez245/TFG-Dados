@@ -3004,6 +3004,8 @@ GameObject:
   m_Component:
   - component: {fileID: 982159852}
   - component: {fileID: 982159851}
+  - component: {fileID: 982159854}
+  - component: {fileID: 982159853}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -3069,6 +3071,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &982159853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982159849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2389f572f4a748d42a8c6feef48bf078, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _virtualCamera: {fileID: 284356637}
+--- !u!114 &982159854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982159849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NoiseProfile: {fileID: 0}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 1
+  FrequencyGain: 1
+  m_NoiseOffsets: {x: 488.898, y: -989.63184, z: -174.93521}
 --- !u!1 &993674012
 GameObject:
   m_ObjectHideFlags: 0
@@ -4823,6 +4855,7 @@ Transform:
   - {fileID: 1155364504}
   - {fileID: 302290627}
   - {fileID: 1135113124}
+  - {fileID: 1803777778}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1793697707
@@ -4954,12 +4987,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1803777776}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 960, y: 15, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1785182723}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1848731473
 GameObject:
@@ -5851,7 +5884,6 @@ SceneRoots:
   - {fileID: 1203013505}
   - {fileID: 461963678}
   - {fileID: 1024110616}
-  - {fileID: 1803777778}
   - {fileID: 1539070795}
   - {fileID: 2055858841}
   - {fileID: 2114387708}
