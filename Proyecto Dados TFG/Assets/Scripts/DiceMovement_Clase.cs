@@ -1,3 +1,5 @@
+using DG.Tweening;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
@@ -18,6 +20,8 @@ public class DiceMovement_Clase : MonoBehaviour
     DiceGenerator_Clase diceGenerator_Clase; 
     [SerializeField] GameObject turnManager;
     TurnManager turnManager_Clase;
+
+    
 
     void Start()
     {
@@ -107,6 +111,7 @@ public class DiceMovement_Clase : MonoBehaviour
             Debug.Log("fila completa");
         }
     }
+    
 
     public void FindValidPosition()
     {
