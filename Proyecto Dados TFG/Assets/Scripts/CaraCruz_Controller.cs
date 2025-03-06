@@ -9,6 +9,7 @@ public class CaraCruz_Controller : MonoBehaviour
     TurnManager turnManager_Clase;
 
     [SerializeField] GameObject diceMovement;
+    [SerializeField] GameObject uiController;
 
     [SerializeField] GameObject _botonCara;
     [SerializeField] GameObject _botonCruz;
@@ -26,7 +27,7 @@ public class CaraCruz_Controller : MonoBehaviour
 
     private void Update()
     {
-        if (InputManager.instance.SelectInput)
+        if (InputManager.instance.SelectInput && !uiController.GetComponent<UI_Controller>().isPaused)
         {
             if(EventSystem.current.currentSelectedGameObject == _botonCara)
             {

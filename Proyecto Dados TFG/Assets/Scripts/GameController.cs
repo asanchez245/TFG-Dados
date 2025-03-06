@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
 
 
 public class GameController : MonoBehaviour
@@ -15,6 +17,8 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject panelWinP1_GO;
     [SerializeField] GameObject panelWinP2_GO;
     [SerializeField] GameObject panelEmpate_GO;
+    [SerializeField] GameObject botonReset;
+    [SerializeField] GameObject botonMainMenu;
 
 
 
@@ -160,5 +164,8 @@ public class GameController : MonoBehaviour
 
                 break;
         }
+        EventSystem.current.SetSelectedGameObject(botonReset);
+        botonReset.SetActive(true);
+        botonMainMenu.SetActive(true);
     }
 }

@@ -12,6 +12,10 @@ public class DiceMovement_Clase : MonoBehaviour
     TurnManager turnManager_Clase;
     [SerializeField] GameObject _caraCruzController;
     [SerializeField] GameObject _gameController;
+    [SerializeField] GameObject _UI_Controller;
+    UI_Controller _UI_Controller_Clase;
+
+
 
     [Header("Variables Movimiento Dados")]
     [SerializeField] GameObject[] _diceStartPosition;
@@ -29,10 +33,12 @@ public class DiceMovement_Clase : MonoBehaviour
 
     void Start()
     {
+        
         _caraCruzController.SetActive(false);
 
         diceGenerator_Clase = diceGenerator.GetComponent<DiceGenerator_Clase>();
         turnManager_Clase = turnManager.GetComponent<TurnManager>();
+        _UI_Controller_Clase = _UI_Controller.GetComponent<UI_Controller>();
 
         switch (turnManager_Clase.p1Turn)
         {
@@ -53,7 +59,7 @@ public class DiceMovement_Clase : MonoBehaviour
 
     void Update()
     {
-        if (InputManager.instance.SelectInput) //Se acciona el intro o boton A del mando
+        if (InputManager.instance.SelectInput && !_UI_Controller_Clase.isPaused) //Se acciona el intro o boton A del mando
         {
             switch (turnManager_Clase.p1Turn)
             {
@@ -70,6 +76,7 @@ public class DiceMovement_Clase : MonoBehaviour
                     SelectAction();
                     break;
             }
+            //_UI_Controller_Clase._delayInput = 0.5f;
         }
     }
     public void SelectAction()
