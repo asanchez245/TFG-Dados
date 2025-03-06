@@ -152,9 +152,10 @@ public class DiceMovement_Clase : MonoBehaviour
             {
                 if (_selectedRow.transform.GetChild(i).transform.childCount > 0) //si el primer hijo de la fila tiene dado
                 {
-                    
+                   
                     //Casilla invalida
                     Debug.Log(_selectedRow.transform.GetChild(i).transform.name + " invalido");
+                   
                 }
                 else //si no tiene dado
                 {
