@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class MainMenuManager_Clase : MonoBehaviour
 {
-    [SerializeField] GameObject _playerStartPosition;
+    [SerializeField] GameObject _botonJugar;
 
     //[SerializeField] GameObject _player1Select;
     //[SerializeField] GameObject _player2Select;
@@ -13,7 +13,7 @@ public class MainMenuManager_Clase : MonoBehaviour
 
     void Start()
     {
-        EventSystem.current.SetSelectedGameObject(_playerStartPosition);
+        EventSystem.current.SetSelectedGameObject(_botonJugar);
     }
 
     void Update()

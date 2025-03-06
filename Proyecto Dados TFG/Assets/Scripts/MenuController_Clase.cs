@@ -40,12 +40,6 @@ public class MenuController_Clase : MonoBehaviour
        
     }
 
-
-    //public void BotonSonido()
-    //{
-    //    audioBoton.Play();
-    //}
-
     public void CambiarVolumenMaster()
     {
         //master volume
@@ -70,23 +64,11 @@ public class MenuController_Clase : MonoBehaviour
     public void LoadScene(int scene)
     {
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(scene);
     }
 
     public void Exit()
     {
         Application.Quit();
-    }
-
-    public void Pausa()
-    {
-        Time.timeScale = 0.0f;
-       
-    }
-
-    public void Volver()
-    {
-        Time.timeScale = 1.0f;
-       
     }
 }
