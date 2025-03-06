@@ -8,7 +8,8 @@ public class DoTweenPruebaDados : MonoBehaviour
     public GameObject flecha, flecha2, flecha3, flecha4, flecha5, flecha6;
     public Vector3[] posicionGuardada;
     // La posición guardada previamente
-
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _changeArrow;
     void Start()
     {
         // Guardamos la posición original de la flecha (como ejemplo)
@@ -117,6 +118,11 @@ public class DoTweenPruebaDados : MonoBehaviour
 
         secuenciaTest.Append(flecha6.transform.DOMoveX(flecha6.transform.position.x - 0.4f, 1.25f).SetEase(Ease.OutBounce));
 
+    }
+
+    public void Sounds()
+    {
+        GetComponent<AudioSource>().PlayOneShot(_changeArrow);
     }
   
 }
