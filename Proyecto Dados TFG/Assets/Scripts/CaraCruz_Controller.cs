@@ -13,6 +13,8 @@ public class CaraCruz_Controller : MonoBehaviour
 
     [SerializeField] GameObject _botonCara;
     [SerializeField] GameObject _botonCruz;
+    [SerializeField] GameObject _monedaCara;
+    [SerializeField] GameObject _monedaCruz;
 
     public int chosenValue;
 
@@ -50,7 +52,18 @@ public class CaraCruz_Controller : MonoBehaviour
     public IEnumerator LanzarMoneda()
     {
         int random = Random.Range(0, 2);
+        switch (random)
+        {
+            case 0:
+                _monedaCruz.SetActive(true);
+                break;
+            case 1:
+                _monedaCara.SetActive(true);
+                break;
+        }
         Debug.Log(random);
+
+
         yield return new WaitForSeconds(3); //espera 3 segundos para la animacion de tirar la moneda
 
         if(chosenValue == random)
@@ -67,6 +80,8 @@ public class CaraCruz_Controller : MonoBehaviour
             diceMovement.SetActive(true);
             turnManager_Clase.gameRunning = true;
         }
+        _monedaCruz.SetActive(false);
+        _monedaCara.SetActive(false);
     }
 
 
