@@ -31,6 +31,12 @@ public class DiceMovement_Clase : MonoBehaviour
     [SerializeField] GameObject[] _allDicePos;
     bool allPosFilled = false;
 
+    [Header("Sonido")]
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _putDice;
+    [SerializeField] AudioClip _invalidPosition;
+
+
     void Start()
     {
         
@@ -146,12 +152,15 @@ public class DiceMovement_Clase : MonoBehaviour
             {
                 if (_selectedRow.transform.GetChild(i).transform.childCount > 0) //si el primer hijo de la fila tiene dado
                 {
+                    
                     //Casilla invalida
                     Debug.Log(_selectedRow.transform.GetChild(i).transform.name + " invalido");
                 }
                 else //si no tiene dado
                 {
                     //Coloca el dado en esta casilla
+                    GetComponent<AudioSource>().PlayOneShot(_putDice);
+
                     diceGenerator_Clase.instaciatedDice.transform.parent = _selectedRow.transform.GetChild(i); //emparenta al dado con la casilla
                     diceGenerator_Clase.instaciatedDice.transform.position = _selectedRow.transform.GetChild(i).position; //lo coloca en el centro de esta
                     Debug.Log("Dado colocado en " + _selectedRow.transform.GetChild(i).transform.name);
