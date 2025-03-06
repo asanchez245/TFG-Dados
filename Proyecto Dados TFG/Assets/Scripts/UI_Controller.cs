@@ -46,14 +46,14 @@ public class UI_Controller : MonoBehaviour
     {
         _lastSelectedGO = EventSystem.current.currentSelectedGameObject;
         EventSystem.current.SetSelectedGameObject(_botonVolver[0]);
-        //Time.timeScale = 0;
+        Time.timeScale = 0;
         _panelPausa.SetActive(true);
         isPaused = true;
     }
     public void HideAllPanels()
     {
         EventSystem.current.SetSelectedGameObject(_lastSelectedGO);
-        //Time.timeScale = 1.0f;
+        Time.timeScale = 1.0f;
         _panelPausa.SetActive(false);
         _panelAudio.SetActive(false);
         _panelControles.SetActive(false);
@@ -92,4 +92,9 @@ public class UI_Controller : MonoBehaviour
     //    //se esconde el panel a traves del INSPECTOR de UNITY ojo
     //}
 
+    public void ShowPlayPanel() //funcion solo del menu inicial del juego
+    {
+        EventSystem.current.SetSelectedGameObject(_botonVolver[0]);
+        //_lastSelectedGO = EventSystem.current.currentSelectedGameObject;
+    }
 }
