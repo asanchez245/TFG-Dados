@@ -8496,7 +8496,7 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   _audioSource: {fileID: 0}
-  _changeArrow: {fileID: 8300000, guid: 8a7fbd10a28c531459a8f1bd16080653, type: 3}
+  _changeArrow: {fileID: 8300000, guid: 743d35d126a10d34db90475509c99f75, type: 3}
 --- !u!4 &1803777778
 Transform:
   m_ObjectHideFlags: 0
@@ -8525,7 +8525,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
