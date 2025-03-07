@@ -9,14 +9,22 @@ public class CaraCruz_Controller : MonoBehaviour
     TurnManager turnManager_Clase;
 
     [SerializeField] GameObject diceMovement;
+    [SerializeField] GameObject uiController;
 
     [SerializeField] GameObject _botonCara;
     [SerializeField] GameObject _botonCruz;
+    [SerializeField] GameObject _monedaCara;
+    [SerializeField] GameObject _monedaCruz;
 
     public int chosenValue;
 
+    public GameObject cartelMoneda;
+    public GameObject cartelTurnos;
+
     void Start()
     {
+        cartelMoneda.SetActive(true);
+        cartelTurnos.SetActive(false);
         diceMovement.SetActive(false);
         turnManager_Clase = turnManager.GetComponent<TurnManager>();
         _botonCara.SetActive(true);
@@ -26,7 +34,7 @@ public class CaraCruz_Controller : MonoBehaviour
 
     private void Update()
     {
-        if (InputManager.instance.SelectInput)
+        if (InputManager.instance.SelectInput && !uiController.GetComponent<UI_Controller>().isPaused)
         {
             if(EventSystem.current.currentSelectedGameObject == _botonCara)
             {
@@ -49,7 +57,18 @@ public class CaraCruz_Controller : MonoBehaviour
     public IEnumerator LanzarMoneda()
     {
         int random = Random.Range(0, 2);
+        switch (random)
+        {
+            case 0:
+                _monedaCruz.SetActive(true);
+                break;
+            case 1:
+                _monedaCara.SetActive(true);
+                break;
+        }
         Debug.Log(random);
+
+
         yield return new WaitForSeconds(3); //espera 3 segundos para la animacion de tirar la moneda
 
         if(chosenValue == random)
@@ -66,6 +85,10 @@ public class CaraCruz_Controller : MonoBehaviour
             diceMovement.SetActive(true);
             turnManager_Clase.gameRunning = true;
         }
+        _monedaCruz.SetActive(false);
+        _monedaCara.SetActive(false);
+        cartelTurnos.SetActive(true);
+        cartelMoneda.SetActive(false);
     }
 
 

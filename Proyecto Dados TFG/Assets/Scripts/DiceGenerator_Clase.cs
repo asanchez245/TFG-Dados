@@ -27,19 +27,57 @@ public class DiceGenerator_Clase : MonoBehaviour
 
     void Update()
     {
-        Random.seed = System.DateTime.Now.Millisecond; //randomiza mas el randomizer (por la cara)        
+        //Random.seed = System.DateTime.Now.Millisecond; //randomiza mas el randomizer (por la cara)        
     }
 
-    public void GenerateDice()
+    public IEnumerator DiceInstanceAnimation()
     {
+        float diceFlickTImer = .10f;
         instaciatedDice = null;
         int random = Random.Range(0, 6);
         diceInstance = Instantiate(diceGameobject, currentSpawnPosition.transform.position, transform.rotation);
+        #region ANIMACION DADO
+        diceInstance.GetComponent<SpriteRenderer>().sprite = diceInfo_Clase.diceArtwork[random];
+        yield return new WaitForSeconds(diceFlickTImer);
+        random = Random.Range(0, 6);
+        diceInstance.GetComponent<SpriteRenderer>().sprite = diceInfo_Clase.diceArtwork[random];
+        yield return new WaitForSeconds(diceFlickTImer); 
+        random = Random.Range(0, 6);
+        diceInstance.GetComponent<SpriteRenderer>().sprite = diceInfo_Clase.diceArtwork[random];
+        yield return new WaitForSeconds(diceFlickTImer); 
+        random = Random.Range(0, 6);
+        diceInstance.GetComponent<SpriteRenderer>().sprite = diceInfo_Clase.diceArtwork[random];
+        yield return new WaitForSeconds(diceFlickTImer); 
+        random = Random.Range(0, 6);
+        diceInstance.GetComponent<SpriteRenderer>().sprite = diceInfo_Clase.diceArtwork[random];
+        yield return new WaitForSeconds(diceFlickTImer); 
+        random = Random.Range(0, 6);
+        diceInstance.GetComponent<SpriteRenderer>().sprite = diceInfo_Clase.diceArtwork[random];
+        yield return new WaitForSeconds(diceFlickTImer); 
+        random = Random.Range(0, 6);
+        diceInstance.GetComponent<SpriteRenderer>().sprite = diceInfo_Clase.diceArtwork[random];
+        yield return new WaitForSeconds(diceFlickTImer);
+        random = Random.Range(0, 6);
+        diceInstance.GetComponent<SpriteRenderer>().sprite = diceInfo_Clase.diceArtwork[random];
+        yield return new WaitForSeconds(diceFlickTImer); 
+        random = Random.Range(0, 6);
+        diceInstance.GetComponent<SpriteRenderer>().sprite = diceInfo_Clase.diceArtwork[random];
+        yield return new WaitForSeconds(diceFlickTImer); 
+        random = Random.Range(0, 6);
+        diceInstance.GetComponent<SpriteRenderer>().sprite = diceInfo_Clase.diceArtwork[random];
+        yield return new WaitForSeconds(diceFlickTImer);
+        random = Random.Range(0, 6);
+        #endregion
         diceInstance.GetComponent<SpriteRenderer>().sprite = diceInfo_Clase.diceArtwork[random];
         diceInstance.GetComponent<DiceInfo_Clase>().diceValue = random + 1;
 
         instaciatedDice = diceInstance;
         Debug.Log("Instanciado dado " + diceInstance.GetComponent<DiceInfo_Clase>().diceValue);
 
+    }
+
+    public void GenerateDice()
+    {
+        StartCoroutine(DiceInstanceAnimation());
     }
 }

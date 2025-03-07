@@ -12,6 +12,10 @@ public class DiceMovement_Clase : MonoBehaviour
     TurnManager turnManager_Clase;
     [SerializeField] GameObject _caraCruzController;
     [SerializeField] GameObject _gameController;
+    [SerializeField] GameObject _UI_Controller;
+    UI_Controller _UI_Controller_Clase;
+
+
 
     [Header("Variables Movimiento Dados")]
     [SerializeField] GameObject[] _diceStartPosition;
@@ -27,12 +31,20 @@ public class DiceMovement_Clase : MonoBehaviour
     [SerializeField] GameObject[] _allDicePos;
     bool allPosFilled = false;
 
+    [Header("Sonido")]
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _putDice;
+    [SerializeField] AudioClip _invalidPosition;
+
+
     void Start()
     {
+        
         _caraCruzController.SetActive(false);
 
         diceGenerator_Clase = diceGenerator.GetComponent<DiceGenerator_Clase>();
         turnManager_Clase = turnManager.GetComponent<TurnManager>();
+        _UI_Controller_Clase = _UI_Controller.GetComponent<UI_Controller>();
 
         switch (turnManager_Clase.p1Turn)
         {
@@ -53,7 +65,7 @@ public class DiceMovement_Clase : MonoBehaviour
 
     void Update()
     {
-        if (InputManager.instance.SelectInput) //Se acciona el intro o boton A del mando
+        if (InputManager.instance.SelectInput && !_UI_Controller_Clase.isPaused) //Se acciona el intro o boton A del mando
         {
             switch (turnManager_Clase.p1Turn)
             {
@@ -70,6 +82,7 @@ public class DiceMovement_Clase : MonoBehaviour
                     SelectAction();
                     break;
             }
+            //_UI_Controller_Clase._delayInput = 0.5f;
         }
     }
     public void SelectAction()
@@ -139,12 +152,16 @@ public class DiceMovement_Clase : MonoBehaviour
             {
                 if (_selectedRow.transform.GetChild(i).transform.childCount > 0) //si el primer hijo de la fila tiene dado
                 {
+                   
                     //Casilla invalida
                     Debug.Log(_selectedRow.transform.GetChild(i).transform.name + " invalido");
+                   
                 }
                 else //si no tiene dado
                 {
                     //Coloca el dado en esta casilla
+                    GetComponent<AudioSource>().PlayOneShot(_putDice);
+
                     diceGenerator_Clase.instaciatedDice.transform.parent = _selectedRow.transform.GetChild(i); //emparenta al dado con la casilla
                     diceGenerator_Clase.instaciatedDice.transform.position = _selectedRow.transform.GetChild(i).position; //lo coloca en el centro de esta
                     Debug.Log("Dado colocado en " + _selectedRow.transform.GetChild(i).transform.name);
