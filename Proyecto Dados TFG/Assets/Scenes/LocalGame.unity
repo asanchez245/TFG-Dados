@@ -1025,11 +1025,11 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1596806582}
         m_TargetAssemblyTypeName: UI_Controller, Assembly-CSharp
-        m_MethodName: ShowPausePanel
+        m_MethodName: ShowOptionsPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1038,6 +1038,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 317525400}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &260986961
 MonoBehaviour:
@@ -7698,7 +7710,7 @@ MonoBehaviour:
   _botonVolver:
   - {fileID: 1997927812}
   - {fileID: 1526355003}
-  - {fileID: 0}
+  - {fileID: 260986958}
   - {fileID: 1069860359}
   _panelPausa: {fileID: 2072140393}
   _panelControles: {fileID: 1734738973}
