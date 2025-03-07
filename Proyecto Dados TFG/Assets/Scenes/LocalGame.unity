@@ -1458,6 +1458,8 @@ MonoBehaviour:
   _monedaCara: {fileID: 917573958}
   _monedaCruz: {fileID: 231549624}
   chosenValue: 0
+  cartelMoneda: {fileID: 1419327878}
+  cartelTurnos: {fileID: 1017781190}
 --- !u!4 &302290627
 Transform:
   m_ObjectHideFlags: 0
@@ -6475,7 +6477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1419327879
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7242,7 +7244,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 26b7aebb5f7bd2a4e99a0bddb274d45b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -9755,6 +9757,8 @@ MonoBehaviour:
   - {fileID: 1025573350}
   - {fileID: 1117656326}
   - {fileID: 1432468023}
+  turnP1Text: {fileID: 1136313375}
+  turnP2Text: {fileID: 631756568}
   gameRunning: 0
 --- !u!1 &2043675835
 GameObject:

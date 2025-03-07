@@ -18,8 +18,13 @@ public class CaraCruz_Controller : MonoBehaviour
 
     public int chosenValue;
 
+    public GameObject cartelMoneda;
+    public GameObject cartelTurnos;
+
     void Start()
     {
+        cartelMoneda.SetActive(true);
+        cartelTurnos.SetActive(false);
         diceMovement.SetActive(false);
         turnManager_Clase = turnManager.GetComponent<TurnManager>();
         _botonCara.SetActive(true);
@@ -82,6 +87,8 @@ public class CaraCruz_Controller : MonoBehaviour
         }
         _monedaCruz.SetActive(false);
         _monedaCara.SetActive(false);
+        cartelTurnos.SetActive(true);
+        cartelMoneda.SetActive(false);
     }
 
 
