@@ -29,6 +29,8 @@ public class GameController : MonoBehaviour
     public int roundsWinnedP1;
     public int roundsWinnedP2;
 
+    public GameObject[] carteleraArriba;
+
 
     void Start()
     {
@@ -167,5 +169,8 @@ public class GameController : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(botonReset);
         botonReset.SetActive(true);
         botonMainMenu.SetActive(true);
+        carteleraArriba[0].SetActive(false);
+        carteleraArriba[1].SetActive(false);
+        carteleraArriba[2].SetActive(false);
     }
 }

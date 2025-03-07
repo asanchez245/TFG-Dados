@@ -21,6 +21,8 @@ public class CaraCruz_Controller : MonoBehaviour
     public GameObject cartelMoneda;
     public GameObject cartelTurnos;
 
+    bool _coinFlipped;
+
     void Start()
     {
         cartelMoneda.SetActive(true);
@@ -44,8 +46,13 @@ public class CaraCruz_Controller : MonoBehaviour
             {
                 chosenValue = 0;
             }
-            _botonCara.SetActive(false);
-            _botonCruz.SetActive(false);
+            if (!_coinFlipped)
+            {
+                _botonCara.SetActive(false);
+                _botonCruz.SetActive(false);
+                ActivarCorrutina();
+                _coinFlipped = true;
+            }
         }
     }
 
