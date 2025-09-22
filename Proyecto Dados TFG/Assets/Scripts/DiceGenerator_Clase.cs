@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class DiceGenerator_Clase : MonoBehaviour
 {
     DiceInfo_Clase diceInfo_Clase;
-    DiceMovement_Clase diceMovement_Clase;
+    //DiceMovement_Clase diceMovement_Clase;
     [SerializeField] GameObject diceMovement;
     [SerializeField] GameObject diceGameobject;
 
@@ -20,7 +20,7 @@ public class DiceGenerator_Clase : MonoBehaviour
 
     void Awake()
     {
-        diceMovement_Clase = diceMovement.GetComponent<DiceMovement_Clase>();
+        //diceMovement_Clase = diceMovement.GetComponent<DiceMovement_Clase>();
         diceInfo_Clase = diceGameobject.GetComponent<DiceInfo_Clase>();
 
     }
@@ -78,6 +78,11 @@ public class DiceGenerator_Clase : MonoBehaviour
 
     public void GenerateDice()
     {
+        if(currentSpawnPosition == null)
+        {
+            Debug.LogWarning("No se ha asignado una posicion de spawn para el dado");
+            return;
+        }
         StartCoroutine(DiceInstanceAnimation());
     }
 }

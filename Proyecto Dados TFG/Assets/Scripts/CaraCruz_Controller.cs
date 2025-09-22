@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class CaraCruz_Controller : MonoBehaviour
 {
@@ -31,46 +30,27 @@ public class CaraCruz_Controller : MonoBehaviour
         turnManager_Clase = turnManager.GetComponent<TurnManager>();
         _botonCara.SetActive(true);
         _botonCruz.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(_botonCara);
     }
 
-    private void Update()
+
+    public void CoinFlip(bool cara)
     {
-        if (InputManager.instance.SelectInput && !uiController.GetComponent<UI_Controller>().isPaused)
-        {
-            if(EventSystem.current.currentSelectedGameObject == _botonCara)
-            {
-                chosenValue = 1;
-            }
-            else
-            {
-                chosenValue = 0;
-            }
-            if (!_coinFlipped)
-            {
-                _botonCara.SetActive(false);
-                _botonCruz.SetActive(false);
-                ActivarCorrutina();
-                _coinFlipped = true;
-            }
-        }
+        _botonCara.SetActive(false);
+        _botonCruz.SetActive(false);
+        StartCoroutine(LanzarMoneda(cara));
+        _coinFlipped = true;
     }
 
-    public void ActivarCorrutina()
-    {
-        StartCoroutine(LanzarMoneda());
-    }
-
-    public IEnumerator LanzarMoneda()
+    public IEnumerator LanzarMoneda(bool cara)
     {
         int random = Random.Range(0, 2);
         switch (random)
         {
-            case 0:
-                _monedaCruz.SetActive(true);
-                break;
-            case 1:
+            case 0://cara
                 _monedaCara.SetActive(true);
+                break;
+            case 1://cruz
+                _monedaCruz.SetActive(true);
                 break;
         }
         Debug.Log(random);
@@ -78,30 +58,22 @@ public class CaraCruz_Controller : MonoBehaviour
 
         yield return new WaitForSeconds(3); //espera 3 segundos para la animacion de tirar la moneda
 
-        if(chosenValue == random)
+        if((cara && random == 0) || (!cara && random == 1)) //si elige cara y sale cara o elige cruz y sale cruz
         {
-            //turno del player que elige la moneda se mantiene
             diceMovement.SetActive(true);
             turnManager_Clase.gameRunning = true;
             
         }
         else
         {
-            //el turno del player que elige cambia
             turnManager_Clase.ChangePlayerTurn();
             diceMovement.SetActive(true);
             turnManager_Clase.gameRunning = true;
         }
+
         _monedaCruz.SetActive(false);
         _monedaCara.SetActive(false);
         cartelTurnos.SetActive(true);
         cartelMoneda.SetActive(false);
-    }
-
-
-    public void FuncionParaTesteoBorrarLuego()
-    {
-        EventSystem.current.SetSelectedGameObject(_botonCara);
-
     }
 }

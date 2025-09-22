@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class GameController : MonoBehaviour
 {
-    DiceMovement_Clase diceMovement_Clase;
+    //DiceMovement_Clase diceMovement_Clase;
     [SerializeField] GameObject diceMovement;
 
     PointsManager_Clase pointsManager_Clase;
@@ -34,7 +34,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        diceMovement_Clase = diceMovement.GetComponent<DiceMovement_Clase>();
+        //diceMovement_Clase = diceMovement.GetComponent<DiceMovement_Clase>();
         pointsManager_Clase = pointsManager.GetComponent<PointsManager_Clase>();
         panelWinP1_GO.SetActive(false);
         panelWinP2_GO.SetActive(false);
