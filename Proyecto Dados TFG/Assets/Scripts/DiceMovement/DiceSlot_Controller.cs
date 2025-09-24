@@ -29,7 +29,6 @@ public class DiceSlot_Controller : MonoBehaviour, IDropHandler
             if (diceToSwap != null)
             {
                 DM.SwapParent(dropped, diceToSwap);
-                Debug.Log(dropped.name + " swapped with " + diceToSwap.name);
             }
         }
     }
