@@ -25,7 +25,7 @@ public class PlayerRun_Controller : MonoBehaviour
 
     public List<Dice_SO> playerDices;
 
-    public int dicesPerRound = 3;
+    public int dicesPerTurn = 3;
 
 
     void Start()

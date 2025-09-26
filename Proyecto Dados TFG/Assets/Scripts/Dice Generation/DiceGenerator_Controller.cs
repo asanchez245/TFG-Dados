@@ -24,7 +24,7 @@ public class DiceGenerator_Controller : MonoBehaviour
 
     public void GenerateRoundDices()
     {
-        for (int i = 0; i < _playerRunController.dicesPerRound; i++)
+        for (int i = 0; i < _playerRunController.dicesPerTurn; i++)
         {
             int randomIndex = Random.Range(0, dicePool.Count);
             Dice_SO selectedDice = dicePool[randomIndex];
@@ -84,13 +84,13 @@ public class DiceGenerator_Controller : MonoBehaviour
     public void LoadDiceStats(DiceInfo_Controller diceInfo, Dice_SO diceSO)
     {
         diceInfo.diceSO = diceSO;
-        diceInfo.originalValue = Random.Range(0, 6);
+        diceInfo.originalValue = Random.Range(0, 6)+1;
         LoadDiceSprite(_instantiatedDice, diceSO, diceInfo.originalValue);
     }
 
     public void LoadDiceSprite(GameObject diceGO, Dice_SO diceSO, int diceFaceNumber)
     {
-        diceGO.GetComponent<Image>().sprite = diceSO.facesSprites[diceFaceNumber];
+        diceGO.GetComponent<Image>().sprite = diceSO.facesSprites[diceFaceNumber-1];
     }
 
 }
